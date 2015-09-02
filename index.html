@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Booktalk - a blog about books</title>
+    <title>Welcome to Booktalk</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +46,9 @@ mixpanel.init("3805c17c7e61246c148d63f831f5a30b");</script><!-- end Mixpanel -->
 
 
 <script>
-    mixpanel.track("HK test");
+    mixpanel.track("Page View", {
+        "title" : document.title
+    });
 </script>
 
 <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
