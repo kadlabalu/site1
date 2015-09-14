@@ -7,17 +7,18 @@
   	var userId;
   	setUser();
 
-
     if(mixpanel !== null && mixpanel !== undefined)
     {
     	var idx = document.URL.indexOf("#campaign=");
-		var campaignName = idx != -1 ? document.URL.substring(idx+10) : "";
+		var campaignName = idx != -1 ? document.URL.substring(idx+10) : "NONE";
 
-	    mixpanel.track("Page View", {
+		var trackedData = {
 	        "title" : document.title, 
 	        "campaign" : campaignName, 
 	        "user" : userId
-	    });
+	    };
+
+	    mixpanel.track("Page View", trackedData);
     }
 
     function setUser()
