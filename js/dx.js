@@ -3,10 +3,13 @@
   	*/
 
   	// Set a cookie for user, if one is not present
-  	
+
 
   	var userId;
   	setUser();
+
+
+  	console.log(window.optimizely.data);
 
     if(mixpanel !== null && mixpanel !== undefined)
     {
