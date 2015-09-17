@@ -7,6 +7,10 @@
 
   	var userId;
 
+  	// add functions for touchponts
+  	setupTouchPointTracking();
+
+
   	// set a user if the cookie does not exist
   	setUser();
 
@@ -14,19 +18,24 @@
   	//Track this user in google analytics
 	ga('set', 'dimension2', userId);
 
-
-  	console.log(window.optimizely.data);
-
   	// If mixpanel is available, track the user there along with any campaign information we may have.
     if(mixpanel !== null && mixpanel !== undefined)
     {
     	var idx = document.URL.indexOf("#campaign=");
 		var campaignName = idx != -1 ? document.URL.substring(idx+10) : "NONE";
+		var experimentData = "none";
+
+		if(window.optimizely !== null && window.optimizely !== undefined)
+		{
+			experimentData = window.optimizely.data.state;	
+		}
+
 
 		var trackedData = {
 	        "title" : document.title, 
 	        "campaign" : campaignName, 
-	        "user" : userId
+	        "user" : userId,
+	        "experimentData" : JSON.parse(JSON.stringify(experimentData))
 	    };
 
 	    mixpanel.track("Page View", trackedData);
@@ -64,3 +73,38 @@
 		}
 		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 	}
+
+	function recordEvent(eventName)
+	{
+		if(mixpanel !== null && mixpanel !== undefined)
+		{
+			var trackedData = {
+				"campaign" : campaignName, 
+				"user" : userId
+				};
+
+			mixpanel.track(eventName, trackedData);				
+		}
+	}
+
+	function setupTouchPointTracking()
+	{
+		var touchPoints = ["#contactMe"];
+
+		$(document).ready(function () {
+
+			for (var i = 0; i < touchPoints.length; i++) {
+				
+				if( $(touchPoints[i]) !== null && $(touchPoints[i]) !== undefined )		
+				{
+					$(touchPoints[i]).on("click", function(ev) { 						
+						recordEvent(ev.currentTarget.id); 
+					} );
+				}				
+			};
+
+		});
+
+
+	}
+
