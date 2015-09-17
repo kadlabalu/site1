@@ -6,14 +6,18 @@
 
 
   	var userId;
+
+  	// set a user if the cookie does not exist
   	setUser();
 
   	
+  	//Track this user in google analytics
 	ga('set', 'dimension2', userId);
 
 
   	console.log(window.optimizely.data);
 
+  	// If mixpanel is available, track the user there along with any campaign information we may have.
     if(mixpanel !== null && mixpanel !== undefined)
     {
     	var idx = document.URL.indexOf("#campaign=");
