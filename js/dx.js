@@ -8,6 +8,9 @@
   	var userId;
   	setUser();
 
+  	
+	ga('set', 'dimension2', userId);
+
 
   	console.log(window.optimizely.data);
 
