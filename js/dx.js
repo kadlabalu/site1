@@ -2,18 +2,17 @@
   	* Standard DX javascript that would be inclided in a page
   	*/
 
-  	// Set a cookie for user, if one is not present
 
-
-  	var userId;
 
   	// add functions for touchponts
   	setupTouchPointTracking();
 
+  	// track visibiluty of touch point
+  	trackVisibility();
 
   	// set a user if the cookie does not exist
+  	var userId;
   	setUser();
-
   	
   	//Track this user in google analytics
 	ga('set', 'dimension2', userId);
@@ -29,7 +28,6 @@
 		{
 			experimentData = window.optimizely.data.state;	
 		}
-
 
 		var trackedData = {
 	        "title" : document.title, 
@@ -74,13 +72,13 @@
 		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 	}
 
-	function recordEvent(eventName)
+	function recordEvent(eventName, eventdata)
 	{
 		if(mixpanel !== null && mixpanel !== undefined)
 		{
-			var trackedData = {
-				"campaign" : campaignName, 
-				"user" : userId
+			var trackedData = {				
+				"user" : userId,
+				"touchpoint" : eventdata
 				};
 
 			mixpanel.track(eventName, trackedData);				
@@ -93,7 +91,8 @@
 
 		$(document).ready(function () {
 
-			for (var i = 0; i < touchPoints.length; i++) {
+			for (var i = 0; i < touchPoints.length; i++) 
+			{
 				
 				if( $(touchPoints[i]) !== null && $(touchPoints[i]) !== undefined )		
 				{
@@ -104,7 +103,28 @@
 			};
 
 		});
-
-
 	}
+
+	function trackVisibility()
+	{
+		$.getScript("js/jquery.lazyloadxt.js", function() { 
+
+			var touchPoints = ["#contactMe"];
+     		$(document).ready(function () 
+     		{
+     			for (var i = 0; i < touchPoints.length; i++)
+     			{
+					if( $(touchPoints[i]) !== null && $(touchPoints[i]) !== undefined )		
+					{
+		     			$(touchPoints[i])
+			     			.on('lazyshow', function(ev) { recordEvent("touchpoint-visible",  ev.currentTarget.id); })
+			     			.lazyLoadXT({visibleOnly: false});
+
+					}
+     			}
+        	});
+
+		 });		
+     }
+	
 
