@@ -45,7 +45,8 @@
      window.optimizely = window.optimizely || [];
      window.optimizely.push("activateUniversalAnalytics");
 
-  ga('send', 'pageview');
+  //ga('send', 'pageview');
+  ga('send', 'event', 'category', 'action', {'page': 'site1/about.html'});
 
 </script>
 <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
