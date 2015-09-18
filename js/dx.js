@@ -16,7 +16,7 @@
   	
   	//Track this user in google analytics
 	ga('set', 'dimension2', userId);
-	ga('set', 'dimension3', userId);
+	ga('set', 'dimension3', "testValue");
 	ga('set', '&uid', userId); // Set the user ID using signed-in user_id.
 	ga('send', 'pageview');
 
