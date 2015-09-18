@@ -90,7 +90,7 @@
 
 	function setupTouchPointTracking()
 	{
-		var touchPoints = ["#contactMe"];
+		var touchPoints = ["#contactMe", "#bookshelf-row1", "#bookshelf-row2", "#ReadingNow-FoodRules", "#ReadingNow-Omnivores-Delimma", "#ReadingNow-ThirdPlate", "#ReadingNow-InDefenceOfFood"];
 
 		$(document).ready(function () {
 
@@ -100,7 +100,7 @@
 				if( $(touchPoints[i]) !== null && $(touchPoints[i]) !== undefined )		
 				{
 					$(touchPoints[i]).on("click", function(ev) { 						
-						recordEvent(ev.currentTarget.id); 
+						recordEvent("touchpoint-clicked", ev.currentTarget.id); 
 					} );
 				}				
 			};
@@ -112,7 +112,7 @@
 	{
 		$.getScript("js/jquery.lazyloadxt.js", function() { 
 
-			var touchPoints = ["#contactMe"];
+			var touchPoints = ["#contactMe", "#bookshelf-row1", "#bookshelf-row2", "#ReadingNow-FoodRules", "#ReadingNow-Omnivores-Delimma", "#ReadingNow-ThirdPlate", "#ReadingNow-InDefenceOfFood"];
      		$(document).ready(function () 
      		{
      			for (var i = 0; i < touchPoints.length; i++)
