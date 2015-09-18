@@ -16,6 +16,7 @@
   	
   	//Track this user in google analytics
 	ga('set', 'dimension2', userId);
+	ga('set', 'dimension3', userId);
 	ga('send', 'pageview');
 
   	// If mixpanel is available, track the user there along with any campaign information we may have.
