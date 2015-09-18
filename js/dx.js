@@ -17,7 +17,7 @@
   	//Track this user in google analytics
 	ga('set', 'dimension2', userId);
 	ga('set', 'dimension3', userId);
-	ga(‘set’, '&uid', userId); // Set the user ID using signed-in user_id.
+	ga('set', '&uid', userId); // Set the user ID using signed-in user_id.
 	ga('send', 'pageview');
 
   	// If mixpanel is available, track the user there along with any campaign information we may have.
