@@ -129,5 +129,21 @@
 
 		 });		
      }
-	
 
+// Used by different even tracking points.
+// eventCategory and eventAction are mandatory.
+function sendEvent(eventCategory,eventAction,eventLabel,eventValue)
+{
+	if(eventLabel && eventValue)
+          {
+          	ga('send','event',eventCategory, eventAction, eventLabel, eventValue);
+          }
+          else if(eventLabel)
+          {
+          	ga('send','event',eventCategory, eventAction, eventLabel);
+          }
+          else
+          {
+                ga('send','event',eventCategory, eventAction);
+          }
+}
