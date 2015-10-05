@@ -1,71 +1,70 @@
 var radius = 50;
 
-itemclick = function(d)
-{
+itemclick = function(d){
 	window.alert("Recommendations to improve count for page/event: "+d.label);
-	}
+}
+
+
 drawJourney = function(journeyName, states, div){
-
-	for(var i = 0; i < states.length-1; i++)
-		{
-		states[i].transitions.push( { label : 'whooo', target : states[ i+1]})
-		}
+    for(var i = 0; i < states.length-1; i++)
+    {
+        states[i].transitions.push( { label : 'whooo', target : states[ i+1]})
+    }
 	
-svg = d3.select("#" + div)
-.append("svg")
-.attr("width", "1400px")
-.attr("height", "250px");    
+    svg = d3.select("#" + div)
+    .append("svg")
+    .attr("width", "1400px")
+    .attr("height", "250px");    
 
-svg.append("g")
-.append("text")
-.text(journeyName).attr("x",0).attr("y",15);
+    svg.append("g")
+    .append("text")
+    .text(journeyName).attr("x",0).attr("y",15);
 
 
     // define arrow markers for graph links
-svg.append('svg:defs').append('svg:marker')
-    .attr('id', 'end-arrow')
-    .attr('viewBox', '0 -5 10 10')
-    .attr('refX', 3)
-    .attr('markerWidth', 8)
-    .attr('markerHeight', 18)
-    .attr('orient', 'auto')
-    .append('svg:path')
-    .attr('d', 'M0,-5L10,0L0,5')
-    .attr('fill', 'grey')
-;
+    svg.append('svg:defs').append('svg:marker')
+        .attr('id', 'end-arrow')
+        .attr('viewBox', '0 -5 10 10')
+        .attr('refX', 3)
+        .attr('markerWidth', 8)
+        .attr('markerHeight', 18)
+        .attr('orient', 'auto')
+        .append('svg:path')
+        .attr('d', 'M0,-5L10,0L0,5')
+        .attr('fill', 'grey');
 
-svg.append('svg:defs').append('svg:marker')
-    .attr('id', 'start-arrow')
-    .attr('viewBox', '0 -5 10 10')
-    .attr('refX', 4)
-    .attr('markerWidth', 8)
-    .attr('markerHeight', 8)
-    .attr('orient', 'auto')
-    .append('svg:path')
-    .attr('d', 'M10,-5L0,0L10,5')
-    .attr('fill', '#000')
-;
+    svg.append('svg:defs').append('svg:marker')
+        .attr('id', 'start-arrow')
+        .attr('viewBox', '0 -5 10 10')
+        .attr('refX', 4)
+        .attr('markerWidth', 8)
+        .attr('markerHeight', 8)
+        .attr('orient', 'auto')
+        .append('svg:path')
+        .attr('d', 'M10,-5L0,0L10,5')
+        .attr('fill', '#000');
 
     // line displayed when dragging new nodes
-var drag_line = svg.append('svg:path')
-    .attr('class', 'dragline hidden')
-    .attr('d', 'M0,0L0,0')
-;
+    var drag_line = svg.append('svg:path')
+        .attr('class', 'dragline hidden')
+        .attr('d', 'M0,0L0,0');
 
-var gStates = svg
-    .selectAll( "g.state")
-    .data( states);
+    var gStates = svg
+        .selectAll( "g.state")
+        .data( states);
 
-var transitions = function() {
-    return states.reduce( function( initial, state) {
-        return initial.concat( 
-            state.transitions.map( function( transition) {
-                return { source : state, target : transition.target};
-            })
-        );
-    }, []);
+    var transitions = function() {
+        return states.reduce( function( initial, state) {
+            return initial.concat( 
+                state.transitions.map( function( transition) {
+                    return { source : state, target : transition.target};
+                })
+            );
+        }, []);
 };
-    // http://www.dashingd3js.com/svg-paths-and-d3js
+
+
+// http://www.dashingd3js.com/svg-paths-and-d3js
 var computeTransitionPath = /*d3.svg.diagonal.radial()*/function( d) {
     var deltaX = d.target.x - d.source.x,
     deltaY = d.target.y - d.source.y,
@@ -315,6 +314,8 @@ function restart() {
         y               : 14
     })
     .text( function( d) {
+
+        
         return d.pageEventScore;
     })
 ;
