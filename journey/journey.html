@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>d3.js selection frame example</title>
+    <link rel="stylesheet" href="app.css">
+  </head>
+  
+  <body>
+  <div id="journey1"></div>
+  <div id="journey2"></div>
+  
+  </body>
+
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="app.js"></script>
+  <script type="text/javascript">
+  var starts = [67,200,400,600,800,1000,1200];
+  var journey1 = [
+                { x : starts[0], y : 67, label : "Email",pageEventScore: 12022, transitions : [] },
+                { x : starts[1], y : 67, label : "How-not-to-be-wrong",pageEventScore: 10987, transitions : [] },
+                { x : starts[2], y : 67, label : "readingnow", pageEventScore: 9003, transitions : [] },
+                { x : starts[3], y : 67, label : "About",pageEventScore: 7056, transitions : [] },
+                { x : starts[4], y : 67, label : "Payment",pageEventScore: 1823, transitions : [] },
+                { x : starts[5], y : 67, label : "Venue",pageEventScore: 1727, transitions : [] },
+                { x : starts[6], y : 67, label : "Register",pageEventScore: 1723, transitions : [] }
+            ];
+  
+  var journey2 = [
+                  { x : starts[0], y : 67, label : "Ad Click",pageEventScore: 10854, transitions : [] },
+                  { x : starts[1], y : 67, label : "Index", pageEventScore: 6021, transitions : [] },
+                  { x : starts[2], y : 67, label : "Readin gnow",pageEventScore: 3334, transitions : [] },
+                  { x : starts[3], y : 67, label : "About",pageEventScore: 1309, transitions : [] },
+                  { x : starts[4], y : 67, label : "Payment",pageEventScore: 1288, transitions : [] },
+                  { x : starts[5], y : 67, label : "Venue",pageEventScore: 1201, transitions : [] },
+                  { x : starts[6], y : 67, label : "Register",pageEventScore: 1094, transitions : [] }
+              ];
+  
+  drawJourney("Journey1",journey1,"journey1");
+  drawJourney("Journey2",journey2,"journey2");
+  </script>
+</html>
