@@ -1,21 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>d3.js selection frame example</title>
-    <link rel="stylesheet" href="app.css">
-  </head>
-  
-  <body>
-  <div id="journey1"></div>
-  <div id="journey2"></div>
-  
-  </body>
+<head>
+<meta charset="utf-8">
+<title>User Journeys</title>
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="styles.css">
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="app.js"></script>
+<script src="css-pop.js"></script>
+</head>
+<body>
 
-  <script src="http://d3js.org/d3.v3.min.js"></script>
-  <script src="app.js"></script>
-  <script src="../js/countUp.js"></script>
-  <script type="text/javascript">
+	<div id="container">
+		<div id="mainContent">
+			<div style="position: relative">
+				<div id="blanket" style="display: none; position: absolute"></div>
+				<div id="popUpDiv" style="display: none; position: absolute;">
+					<a href="" onclick="popup('popUpDiv')"><small>[X]</small></a>
+				</div>
+				<div id="journey1"></div>
+				<div id="journey2"></div>
+			</div>
+
+		</div>
+		<!-- mainContent end -->
+	</div>
+	<!-- container end -->
+</body>
+
+
+<script type="text/javascript">
+  itemclick = function(d)
+  {
+  	popup('popUpDiv'); //TODO - pass data from 'd' into AJAX call that will actually serve recommendation
+  	}
   var starts = [67,200,400,600,800,1000,1200];
   var journey1 = [
                 { x : starts[0], y : 67, label : "Email",pageEventScore: 12022, transitions : [] },
