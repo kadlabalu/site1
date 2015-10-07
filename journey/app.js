@@ -1,10 +1,5 @@
 var radius = 50;
 
-itemclick = function(d){
-	window.alert("Recommendations to improve count for page/event: "+d.label);
-}
-
-
 drawJourney = function(journeyName, states, div){
     for(var i = 0; i < states.length-1; i++)
     {
