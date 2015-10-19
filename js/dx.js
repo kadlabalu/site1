@@ -10,6 +10,9 @@
   	// track visibiluty of touch point
   	trackVisibility();
 
+  	// Category based data
+  	setupTargetedData();
+
   	// set a user if the cookie does not exist
   	var userId;
   	setUser();
@@ -130,7 +133,39 @@
 		 });		
      }
 
-// Used by different even tracking points.
+     function setupTargetedData()
+     {
+
+     		$.getJSON( "http://tags.bluekai.com/site/21036?ret=js", function(data) {
+     			console.log(data);
+     		} );
+
+     		
+     		showNotificationBar("This is a test message");
+     }
+
+	function showNotificationBar(message, duration, bgColor, txtColor, height) 
+	{
+	    /*set default values*/
+	    duration = typeof duration !== 'undefined' ? duration : 1500;
+	    bgColor = typeof bgColor !== 'undefined' ? bgColor : "#F4E0E1";
+	    txtColor = typeof txtColor !== 'undefined' ? txtColor : "#A42732";
+	    height = typeof height !== 'undefined' ? height : 40;
+	    /*create the notification bar div if it doesn't exist*/
+	    if ($('#notification-bar').size() == 0) {
+	        var HTMLmessage = "<div class='notification-message' style='text-align:center; line-height: " + height + "px;'> " + message + " </div>";
+	        $('body').prepend("<div id='notification-bar' style='display:none; width:100%; height:" + height + "px; background-color: " + bgColor + "; position: fixed; z-index: 100; color: " + txtColor + ";border-bottom: 1px solid " + txtColor + ";'>" + HTMLmessage + "</div>");
+	    }
+	    /*animate the bar*/
+	    $('#notification-bar').slideDown(function() {
+	        setTimeout(function() {
+	            $('#notification-bar').slideUp(function() {});
+	        }, duration);
+	    });
+	}
+
+
+// Used by different event tracking points.
 // eventCategory and eventAction are mandatory.
 function sendEvent(eventCategory,eventAction,eventLabel,eventValue)
 {
