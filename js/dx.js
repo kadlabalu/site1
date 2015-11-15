@@ -137,11 +137,11 @@
      {
 
      		$.getJSON( "http://tags.bluekai.com/site/21036?ret=js", function(data) {
-     			console.log(data);
+     			alert("here");
      		} );
 
      		
-     		showNotificationBar("This is a test message");
+     		//showNotificationBar("This is a test message");
      }
 
 	function showNotificationBar(message, duration, bgColor, txtColor, height) 
